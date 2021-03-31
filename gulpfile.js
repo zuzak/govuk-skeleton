@@ -15,6 +15,11 @@ gulp.task('copy-govuk-frontend-assets', () =>
   ).pipe(gulp.dest(ASSETS_DIR))
 )
 
+gulp.task('copy-govuk-frontend-js', () =>
+  gulp.src(
+    path.join('node_modules', 'govuk-frontend', 'govuk', 'all.js')
+  ).pipe(gulp.dest(ASSETS_DIR))
+)
 
 // taken from https://www.npmjs.com/package/gulp-sass readme
 gulp.task('sass', () => gulp
@@ -43,7 +48,8 @@ gulp.task('prestart', gulp.parallel([
 ]))
 
 gulp.task('postinstall', gulp.parallel([
-  'copy-govuk-frontend-assets'
+  'copy-govuk-frontend-assets',
+  'copy-govuk-frontend-js'
 ]))
 
 gulp.task('precommit', gulp.parallel([
