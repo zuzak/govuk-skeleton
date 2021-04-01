@@ -1,0 +1,6 @@
+{
+    "templating": {
+        "cache": false,
+        "watch": true
+    }
+}

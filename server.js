@@ -6,7 +6,7 @@ const path = require('path') // nodejs core
 const express = require('express')
 const app = module.exports = express()
 
-const isDev = process.env.ENV === 'development'
+const config = require('./config.js')
 
 const routes = require('./routes')
 app.use(routes)
@@ -17,16 +17,17 @@ nunjucks.configure([
   'views'
 ], {
   express: app,
-  watch: isDev,
-  noCache: isDev
+  watch: config.get('templating.watch'),
+  noCache: !config.get('templating.cache')
 })
+
 /* set default file extension for views: */
 app.set('view engine', 'njk')
 app.use(express.static('public'))
 
 const server = app.listen(
-  process.env.PORT || 3000,
-  process.env.HOST || undefined,
+  config.get('server.port'),
+  config.get('server.host'),
   () => console.log('Listening')
 )
 
