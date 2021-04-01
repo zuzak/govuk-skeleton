@@ -16,5 +16,8 @@
     "prestart": "gulp prestart",
     "postinstall": "gulp postinstall"
   },
-  "precommit": "gulp precommit"
+  "precommit": "gulp precommit",
+  "engines": {
+    "node": "15"
+  }
 }
