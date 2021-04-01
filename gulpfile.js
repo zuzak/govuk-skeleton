@@ -2,7 +2,7 @@ const gulp = require('gulp')
 const path = require('path')
 
 const standard = require('gulp-standard')
-const sass = require('gulp-sass')
+const sass = require('gulp-dart-sass')
 sass.compiler = require('sass')
 
 const SASS_DIR = path.join('.', 'sass', '*.scss')
