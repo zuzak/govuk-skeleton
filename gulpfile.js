@@ -21,6 +21,34 @@ gulp.task('copy-govuk-frontend-js', () =>
   ).pipe(gulp.dest(ASSETS_DIR))
 )
 
+gulp.task('copy-govuk-frontend', gulp.parallel([
+  'copy-govuk-frontend-assets',
+  'copy-govuk-frontend-js',
+]))
+
+gulp.task('copy-accessible-autocomplete-js', () =>
+  gulp.src(
+    path.join('node_modules', 'accessible-autocomplete', 'dist', 'accessible-autocomplete.min.js')
+  ).pipe(gulp.dest(ASSETS_DIR))
+)
+gulp.task('copy-accessible-autocomplete-css', () =>
+  gulp.src(
+    path.join('node_modules', 'accessible-autocomplete', 'dist', 'accessible-autocomplete.min.css')
+  ).pipe(gulp.dest(CSS_DIR))
+)
+
+gulp.task('copy-accessible-autocomplete', gulp.parallel([
+  'copy-accessible-autocomplete-js',
+  'copy-accessible-autocomplete-css'
+]))
+
+gulp.task('copy-assets', gulp.parallel([
+  'copy-govuk-frontend',
+  'copy-accessible-autocomplete'
+]))
+
+
+
 // taken from https://www.npmjs.com/package/gulp-sass readme
 gulp.task('sass', () => gulp
   .src(SASS_DIR)
@@ -48,8 +76,7 @@ gulp.task('prestart', gulp.parallel([
 ]))
 
 gulp.task('postinstall', gulp.parallel([
-  'copy-govuk-frontend-assets',
-  'copy-govuk-frontend-js'
+  'copy-assets'
 ]))
 
 gulp.task('precommit', gulp.parallel([

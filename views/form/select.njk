@@ -1,0 +1,49 @@
+{% extends "../template.njk" %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% block head %}
+{{ super() }}
+    <link href="/stylesheets/accessible-autocomplete.min.css" rel="stylesheet">
+{% endblock %}
+{% block content %}
+{{ govukSelect({
+  id: "sort",
+  name: "sort",
+  label: {
+    text: "Sort by"
+  },
+  items: [
+    {
+      value: "published",
+      text: "Recently published"
+    },
+    {
+      value: "updated",
+      text: "Recently updated",
+      selected: true
+    },
+    {
+      value: "views",
+      text: "Most views"
+    },
+    {
+      value: "comments",
+      text: "Most comments"
+    }
+  ]
+}) }}
+<div class="govuk-button-group">
+{{ govukButton({
+        text: "Save and continue"
+    }) }}
+    <a class="govuk-link" href="#">My team is not here</a>
+{% endblock %}
+{% block bodyEnd %}
+    {{ super() }}
+    <script type="text/javascript" src="/assets/accessible-autocomplete.min.js"></script>
+<script>
+accessibleAutocomplete.enhanceSelectElement({
+  selectElement: document.querySelector('select')
+})
+</script>
+{% endblock %}
