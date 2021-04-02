@@ -6,10 +6,8 @@ const path = require('path') // nodejs core
 const express = require('express')
 const app = module.exports = express()
 
-const config = require('./config.js')
 
-const routes = require('./routes')
-app.use(routes)
+const config = require('./config.js')
 
 /* configure templates: */
 nunjucks.configure([
@@ -23,7 +21,11 @@ nunjucks.configure([
 
 /* set default file extension for views: */
 app.set('view engine', 'njk')
+// this must be before the routes:
 app.use(express.static('public'))
+
+const routes = require('./routes')
+app.use(routes)
 
 const server = app.listen(
   config.get('server.port'),
