@@ -1,3 +1,5 @@
 const router = module.exports = require('express').Router()
+const client = require('../client')
 
-router.get('/:name', (req, res) => res.render(`form/${req.params.name}.njk`))
+router.get('/text', (req, res) => res.render('form/text.njk'))
+

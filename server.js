@@ -6,18 +6,24 @@ const path = require('path') // nodejs core
 const express = require('express')
 const app = module.exports = express()
 
+const bodyParser = require('body-parser')
+app.use(bodyParser.urlencoded())
 
 const config = require('./config.js')
+const configureTemplating = require('./templating')
 
-/* configure templates: */
-nunjucks.configure([
-  path.join('node_modules', 'govuk-frontend'),
-  'views'
-], {
-  express: app,
-  watch: config.get('templating.watch'),
-  noCache: !config.get('templating.cache')
-})
+configureTemplating(app)
+
+var cookieSession = require('cookie-session')
+app.use(cookieSession({
+  name: 'session',
+  keys: ['squeamish ossifrage'],
+
+  // Cookie Options
+  maxAge: 24 * 60 * 60 * 1000 // 24 hours
+}))
+
+app.use(require('connect-flash')())
 
 /* set default file extension for views: */
 app.set('view engine', 'njk')
