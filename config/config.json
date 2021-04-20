@@ -1,6 +1,7 @@
 {
     "templating": {
         "cache": false,
-        "watch": true
+        "watch": true,
+        "throwOnUndefined": true
     }
 }

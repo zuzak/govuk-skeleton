@@ -36,6 +36,11 @@ const config = module.exports = convict({
             format: Boolean,
             default: false,
             args: 'cache'
+        },
+        throwOnUndefined: {
+            doc: 'Whether to throw errors when outputting a null/undefined value',
+            format: Boolean,
+            default: false
         }
     },
     endpoint: {
