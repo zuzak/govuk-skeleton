@@ -1,8 +1,4 @@
 #!/usr/bin/env node
-
-const nunjucks = require('nunjucks')
-const path = require('path') // nodejs core
-
 const express = require('express')
 const app = module.exports = express()
 
@@ -10,11 +6,11 @@ const bodyParser = require('body-parser')
 app.use(bodyParser.urlencoded())
 
 const config = require('./config.js')
-const configureTemplating = require('./templating')
 
+const configureTemplating = require('./templating')
 configureTemplating(app)
 
-var cookieSession = require('cookie-session')
+const cookieSession = require('cookie-session')
 app.use(cookieSession({
   name: 'session',
   keys: ['squeamish ossifrage'],

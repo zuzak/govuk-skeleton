@@ -23,7 +23,7 @@ gulp.task('copy-govuk-frontend-js', () =>
 
 gulp.task('copy-govuk-frontend', gulp.parallel([
   'copy-govuk-frontend-assets',
-  'copy-govuk-frontend-js',
+  'copy-govuk-frontend-js'
 ]))
 
 gulp.task('copy-accessible-autocomplete-js', () =>
@@ -46,8 +46,6 @@ gulp.task('copy-assets', gulp.parallel([
   'copy-govuk-frontend',
   'copy-accessible-autocomplete'
 ]))
-
-
 
 // taken from https://www.npmjs.com/package/gulp-sass readme
 gulp.task('sass', () => gulp

@@ -16,7 +16,7 @@ module.exports = (app) => {
 
   /* set default file extension for views: */
   app.set('view engine', 'njk')
-  
+
   /**
    * Taken from Ministry of Justice codebase
    * Crown Copyright / MIT https://git.io/JYior
@@ -26,7 +26,7 @@ module.exports = (app) => {
     const item = errors.find(error => error.href === `#${field}`)
     if (item) {
       return {
-        text: item.text,
+        text: item.text
       }
     }
     return null
