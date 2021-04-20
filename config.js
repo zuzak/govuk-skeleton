@@ -45,10 +45,11 @@ const config = module.exports = convict({
     },
     endpoint: {
         info: {
-            name: {
+            url: {
                 doc: 'URL of the info-service',
                 format: URL,
-                env: 'INFO_SERVICE'
+                env: 'INFO_SERVICE',
+                default: 'http://localhost:8085'
             }
         }
     }

@@ -3,5 +3,10 @@
         "cache": false,
         "watch": true,
         "throwOnUndefined": true
+    },
+    "endpoint": {
+        "info": {
+            "url": "http://localhost:8085"
+        }
     }
 }
