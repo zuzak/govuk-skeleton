@@ -3,9 +3,6 @@ const router = module.exports = require('express').Router()
 const health = require('./health')
 router.use('/health', health)
 
-const form = require('./form')
-router.use('/form', form)
-
 router.get('/', (req, res) => res.render('template'))
 
 router.get('/text', require('./form/text').view)
