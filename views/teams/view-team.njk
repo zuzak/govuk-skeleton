@@ -1,0 +1,74 @@
+{% extends "../template.njk" %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+   {% from "govuk/components/button/macro.njk" import govukButton %}
+
+{% block beforeContent %}
+{{ super ()}}
+{{ govukBackLink({
+  text: "Team search",
+  href: "/team"
+}) }}
+{% endblock %}
+{% block content %}
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+            <h1 class="govuk-heading-l">
+                {{ team.displayName }}<span class="govuk-visually-hidden">,</span>
+                <span class="govuk-caption-m">part of
+                    <a class="govuk-link" href="/unit/{{ unit.type }}">{{ unit.displayName }}</a>
+                </span>
+            </h1>
+    </div>
+
+    {% if not team.active %}
+
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+            <div class="govuk-inset-text">
+                <h2 class="govuk-heading-s">This team is inactive</h2>
+                <p>New cases cannot be assigned to {{team.displayName}}. You can still assign members to this team to view and process existing cases.</p>
+                {{ govukButton({
+  text: "Reactivate team",
+  classes: "govuk-button--secondary",
+  href: '/team/' + team.type + '/activate'
+}) }}
+            </div>
+        </div>
+    </div>
+
+    {% endif %}
+
+    
+    <div class="govuk-grid-row">
+        <div class="govuk-grid-column-two-thirds">
+                {{ govukTable({
+                    caption: "Team members",
+                    captionClasses: "govuk-table__caption--m",
+                    firstCellIsHeader: false,
+                    head: [
+                    ],
+                    rows: [
+                        [
+                            { text: "Joe Bloggs" }
+                        ],
+                        [
+                            { text: "Jane Doe" }
+                        ]
+                    ]
+                }) }}
+        </div>
+        {% if team.permissions.length > 0 %}
+        <div class="govuk-grid-column-one-third">
+            <h2 class="govuk-heading-s">Case types</h2>
+            <ul class="govuk-list govuk-list--bullet">
+                <p class="govuk-body">{{team.displayName}} can handle:
+                {% for casetype in team.permissions %}
+                <li>{{caseTypes[casetype.caseTypeCode]}}</li>
+                {% endfor %}
+            </ul>
+        </div>
+        {% endif %}
+    </div>
+{% endblock %}

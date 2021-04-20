@@ -1,0 +1,33 @@
+{% extends "../form-template.njk" %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% block head %}
+{{ super() }}
+    <link href="/stylesheets/accessible-autocomplete.min.css" rel="stylesheet">
+{% endblock %}
+{% block form %}
+{{ govukSelect({
+    id: "unit",
+    name: "unit",
+    
+    label: {
+      text: "Which unit do you want to view?",
+      isPageHeading: true,
+      classes: "govuk-label--l"
+    },
+    items: units
+}) }}
+{{ govukButton({
+  text: "Continue"
+}) }}
+{% endblock %}
+{% block bodyEnd %}
+{{ super() }}
+<script type="text/javascript" src="/assets/accessible-autocomplete.min.js"></script>
+<script>
+accessibleAutocomplete.enhanceSelectElement({
+  selectElement: document.querySelector('select'),
+  showAllValues: true
+})
+</script>
+{% endblock %}

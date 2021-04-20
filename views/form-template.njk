@@ -1,0 +1,15 @@
+{% extends "template.njk" %}
+{% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+{% block content %}
+    <form method="post">
+    {% block errorsummary %}
+    {% if errors.length > 0 %}
+    {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: errors
+    }) }}
+    {% endif %}
+    {% endblock %}
+    {% block form %}{% endblock %}
+    </form>
+{% endblock %}
