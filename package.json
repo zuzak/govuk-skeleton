@@ -12,15 +12,20 @@
     "nunjucks": "^3.2.3"
   },
   "devDependencies": {
+    "@cucumber/cucumber": "^7.2.1",
+    "geckodriver": "^1.22.3",
     "gulp": "^4.0.2",
     "gulp-dart-sass": "^1.0.2",
     "gulp-standard": "^14.0.0",
+    "nightwatch": "^1.6.3",
+    "nightwatch-api": "^3.0.2",
     "sass": "^1.32.8",
     "standard": "^16.0.3"
   },
   "scripts": {
     "prestart": "gulp prestart",
-    "postinstall": "gulp postinstall"
+    "postinstall": "gulp postinstall",
+    "test": "cucumber-js --require cucumber.conf.js --require features/definitions"
   },
   "precommit": "gulp precommit",
   "engines": {

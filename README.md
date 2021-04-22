@@ -33,6 +33,17 @@ the `NODE_ENV` to match.
 In most cases the configurations should default to a sensible production value.
 For development defaults, change the config/development.json file.
 
+## Tests
+
+This repo contains some integration tests.
+To run them, run the app and its upstream services, then do
+```console
+$ npm test
+```
+
+For now, you'll need Firefox installed.
+We write tests using Cucumber and the step definitions using [Nightwatch](https://nightwatchjs.org/api/).
+
 ## Troubleshooting
 This app was written for Node 15. Check your version of npm is up to date if you get an error like:
 ```
